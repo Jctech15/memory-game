@@ -3,6 +3,7 @@ import { shuffle } from "./utilities/shuffle";
 import Card from "./components/Card";
 import Header from "./components/Header";
 import useAppBadge from "./hooks/useAppBadge";
+import Modes from "./components/Modes";
 
 function App() {
   const [cards, setCards] = useState(shuffle); // Cards array from assets
@@ -75,9 +76,11 @@ function App() {
 
     // All matches made, handle win/badge counters
     if (cards.length && checkWin.length < 1) {
-      console.log("You win!");
       setWins(wins + 1);
       handleTurn();
+      setTimeout(() => {
+        alert("You win!");
+      }, 100);
       setBadge();
       setCards(shuffle);
     }
@@ -100,15 +103,7 @@ function App() {
             );
           })}
         </div>
-        <div id="mode">
-          <h1>Game Modes</h1>
-          <section className="addons">
-            <h3>Timer</h3>
-          </section>
-          <section className="addons">
-            <h3>Theme</h3>
-          </section>
-        </div>
+        <Modes />
       </main>
     </div>
   );
