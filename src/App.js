@@ -39,6 +39,17 @@ function App() {
     setCards(shuffle);
   };
 
+  const handleLoseGame = () => {
+    setTimeout(() => {
+      alert("You lost! Your streak will be reset. Try Again!");
+    }, 100);
+    clearBadge();
+    setWins(0);
+    handleTurn();
+    setCards(shuffle);
+    setGameStart(false);
+  };
+
   // Used for selection and match handling
   useEffect(() => {
     let pickTimer;
@@ -109,7 +120,7 @@ function App() {
             );
           })}
         </div>
-        <Modes gameStart={gameStart} />
+        <Modes gameStart={gameStart} handleLoseGame={handleLoseGame} />
       </main>
     </div>
   );
