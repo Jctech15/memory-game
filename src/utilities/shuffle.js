@@ -1,18 +1,35 @@
-export const shuffle = () => {
-  const assets = [
-    { image: "/assets/cartoon-dog.jpg" },
-    { image: "/assets/cartoon-turtle.jpg" },
-    { image: "/assets/cartoon-cat.jpg" },
-    { image: "/assets/cartoon-elephant.jpg" },
-    { image: "/assets/cartoon-bear.jpg" },
-    { image: "/assets/cartoon-fox.jpg" },
-    { image: "/assets/cartoon-rabbit.jpg" },
-    { image: "/assets/cartoon-otter.jpg" },
-  ];
+export const shuffle = (theme) => {
+  if (theme === "animals") {
+    const assets = [
+      { image: "/assets/cartoon-dog.jpg" },
+      { image: "/assets/cartoon-turtle.jpg" },
+      { image: "/assets/cartoon-cat.jpg" },
+      { image: "/assets/cartoon-elephant.jpg" },
+      { image: "/assets/cartoon-bear.jpg" },
+      { image: "/assets/cartoon-fox.jpg" },
+      { image: "/assets/cartoon-rabbit.jpg" },
+      { image: "/assets/cartoon-otter.jpg" },
+    ];
 
-  return [...assets, ...assets]
-    .sort(() => Math.random() - 0.5)
-    .map((card) => ({ ...card, id: Math.random() }));
+    return [...assets, ...assets]
+      .sort(() => Math.random() - 0.5)
+      .map((card) => ({ ...card, id: Math.random() }));
+  } else {
+    const assets = [
+      { image: "/assets/css.png" },
+      { image: "/assets/dart.png" },
+      { image: "/assets/flutter.png" },
+      { image: "/assets/go.png" },
+      { image: "/assets/html5.png" },
+      { image: "/assets/js.png" },
+      { image: "/assets/react.png" },
+      { image: "/assets/node.png" },
+    ];
+
+    return [...assets, ...assets]
+      .sort(() => Math.random() - 0.5)
+      .map((card) => ({ ...card, id: Math.random() }));
+  }
 };
 
 // export default shuffle;

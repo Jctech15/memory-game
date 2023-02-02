@@ -6,7 +6,7 @@ import Modes from "./components/Modes";
 import useAppBadge from "./hooks/useAppBadge";
 
 function App() {
-  const [cards, setCards] = useState(shuffle); // Cards array from assets
+  const [cards, setCards] = useState(shuffle("animals")); // Cards array from assets
   const [pickOne, setPickOne] = useState(null); // First selection
   const [pickTwo, setPickTwo] = useState(null); // Second selection
   const [disabled, setDisabled] = useState(false); // Delay handler
@@ -14,6 +14,8 @@ function App() {
   const [setBadge, clearBadge] = useAppBadge(); //handles app badge
 
   const [gameStart, setGameStart] = useState(false);
+
+  const [cardBack, setCardBack] = useState("/assets/cartoon-paw.jpg");
 
   // Handle card selection
   const handleClick = (card) => {
@@ -48,6 +50,15 @@ function App() {
     handleTurn();
     setCards(shuffle);
     setGameStart(false);
+  };
+
+  const handleChangeTheme = (theme) => {
+    setCards(shuffle(theme));
+    if (theme === "programming") {
+      setCardBack("/assets/stack.png");
+    } else {
+      setCardBack("/assets/cartoon-paw.jpg");
+    }
   };
 
   // Used for selection and match handling
@@ -116,11 +127,16 @@ function App() {
                 image={image}
                 selected={card === pickOne || card === pickTwo || matched}
                 onClick={() => handleClick(card)}
+                cardBack={cardBack}
               />
             );
           })}
         </div>
-        <Modes gameStart={gameStart} handleLoseGame={handleLoseGame} />
+        <Modes
+          gameStart={gameStart}
+          handleLoseGame={handleLoseGame}
+          handleChangeTheme={handleChangeTheme}
+        />
       </main>
     </div>
   );

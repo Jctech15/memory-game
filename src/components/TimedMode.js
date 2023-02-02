@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import Timer from "./Timer";
 
 export default function TimedMode({ gameStart, handleLoseGame }) {
-  const [timer, setTimer] = useState(null);
-  const [seconds, setSeconds] = useState(0);
+  const [timer, setTimer] = useState("none");
+  const [seconds, setSeconds] = useState("none");
 
   useEffect(() => {
     if (gameStart) {
@@ -38,7 +38,12 @@ export default function TimedMode({ gameStart, handleLoseGame }) {
           <legend>Select a Coutdown method!</legend>
           <ul id="TimedMode" onChange={onChangeValue}>
             <li className="timer-selection">
-              <input type="radio" value={null} name="time" checked={!timer} />
+              <input
+                type="radio"
+                value="none"
+                name="time"
+                defaultChecked={timer === "none"}
+              />
               None
             </li>
             <li className="timer-selection">
